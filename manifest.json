@@ -1,0 +1,12 @@
+{
+  "manifest_version": 2,
+
+  "name": "new_tab",
+  "description": "simple new tab page",
+  "version": "0.1",
+  "author": "Nikita Avvakoumov",
+
+  "chrome_url_overrides": {
+    "newtab": "new_tab.html"
+  }
+}

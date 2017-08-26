@@ -1,0 +1,72 @@
+body {
+  color: white;
+  margin: 0;
+}
+
+.full-page-container {
+  align-items: center;
+  background-color: #444;
+  background-size: 100% 100%;
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  height: 100vh;
+  width: 100vw;
+}
+
+.inner-container {
+  display: flex;
+  flex-direction: column;
+  justify-content: space-between;
+  align-items: center;
+  height: 90%;
+  width: 90%;
+}
+
+footer {
+  align-items: baseline;
+  display: flex;
+  flex-direction: row;
+  font: 1.3em Ubuntu, sans-serif;
+  justify-content: space-between;
+  width: 100%;
+}
+
+footer a {
+  color: white;
+  text-decoration: none;
+}
+
+footer a:hover {
+  text-decoration: underline;
+}
+
+footer .weather {
+  font-size: 2.5em;
+}
+
+header {
+  align-items: center;
+  display: flex;
+  flex-direction: column;
+  font: 2em Ubuntu, Helvetica, sans-serif;
+}
+
+.midsection {
+  display: flex;
+  align-content: flex-start;
+  width: 100%;
+}
+
+#search-form i {
+  font-size: 1.5em;
+}
+
+#search-input {
+  background: none;
+  border: none;
+  border-bottom: 2px solid #FFF;
+  color: #FFF;
+  font-size: 2em;
+  padding: 0.2em 1em;
+}
