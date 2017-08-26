@@ -55,11 +55,8 @@ header {
 .midsection {
   display: flex;
   align-content: flex-start;
+  align-items: center;
   width: 100%;
-}
-
-#search-form i {
-  font-size: 1.5em;
 }
 
 #search-input {
@@ -69,4 +66,29 @@ header {
   color: #FFF;
   font-size: 2em;
   padding: 0.2em 1em;
+}
+
+.search-icon {
+  display: block;
+  height: 1.4em;
+  width: 1.4em;
+  position: relative;
+  border: 3px solid #fff;
+  border-radius: 100%;
+  -webkit-transform: rotate(45deg); 
+     -moz-transform: rotate(45deg); 
+       -o-transform: rotate(45deg);
+      -ms-transform: rotate(45deg);
+          transform: rotate(45deg);
+}
+
+.search-icon:after {
+  border-radius: 0 0 30% 30%;
+  content: "";
+  width: 20%;
+  height: 75%;
+  background: #fff;
+  position: absolute;
+  top: 99%;
+  left: 40%;
 }
