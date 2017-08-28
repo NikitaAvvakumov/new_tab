@@ -1,11 +1,11 @@
-var dateOptions = {
+const dateOptions = {
   weekday: "long",
   year: "numeric",
   month: "long",
   day: "numeric"
 };
 
-var timeOptions = {
+const timeOptions = {
   hour: "numeric",
   minute: "numeric"
 }
@@ -16,13 +16,13 @@ function startClock() {
 }
 
 function insertDateAndTime() {
-  var date = new Date();
-  var dateString = date.toLocaleString("en-CA", dateOptions);
-  var dateContainer = document.getElementById("date");
+  const date = new Date();
+  const dateString = date.toLocaleString("en-CA", dateOptions);
+  const dateContainer = document.getElementById("date");
   dateContainer.textContent = dateString;
 
-  var timeString = date.toLocaleString("en-CA", timeOptions);
-  var clockContainer = document.getElementById("clock");
+  const timeString = date.toLocaleString("en-CA", timeOptions);
+  const clockContainer = document.getElementById("clock");
   clockContainer.textContent = timeString;
 }
 

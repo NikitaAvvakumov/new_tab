@@ -8,5 +8,13 @@
 
   "chrome_url_overrides": {
     "newtab": "new_tab.html"
-  }
+  },
+
+  "options_ui": {
+    "page": "options.html"
+  },
+
+  "permissions": [
+    "storage"
+  ]
 }

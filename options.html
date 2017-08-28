@@ -1,0 +1,35 @@
+<!DOCTYPE html>
+
+<html>
+    <head>
+        <meta charset="utf-8">
+        <link rel="stylesheet" href="options.css" />
+    </head>
+
+    <body>
+        <form>
+            <div id="flash-container" class="flash">
+            </div>
+
+            <h3>weather:</h3>
+            
+            <div class="form-group">
+                <b>degrees:</b>
+                <input type="radio" id="degreesChoice1" name="degrees" value="metric">
+                <label for="degreesChoice1">&#176;C</label>
+
+                <input type="radio" id="degreesChoice2" name="degrees" value="imperial">
+                <label for="degreesChoice2">&#176;F</label>
+            </div>
+
+            <div class="form-group">
+                <b>city:</b>
+                <input type="text" id="cityChoice">
+            </div>
+
+            <button type="submit">save</button>
+        </form>
+
+        <script src="options.js"></script>
+    </body>
+</html>

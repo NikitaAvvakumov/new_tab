@@ -1,21 +1,57 @@
 function addWeather() {
-  var apiKey = OPENWEATHERMAP_API_KEY;
-  var uri = `https://api.openweathermap.org/data/2.5/weather?q=${CITY}&units=${UNITS}&APPID=${apiKey}`;
+  if (window.browser) {
+    loadWeatherSettingsInFirefox();
+  } else if (window.chrome) {
+    loadWeatherSettingsInChrome();
+  }
+}
+
+function loadWeatherSettingsInFirefox() {
+  browser.storage.local.get(["new_tabDegrees", "new_tabCity"])
+  .then(options => {
+    cb(options);
+  })
+  .catch(error => {
+    console.error("error fetching weather options", error);
+    fetchAndDisplayWeather("metric");
+  });
+}
+
+function loadWeatherSettingsInChrome() {
+  chrome.storage.local.get(["new_tabDegrees", "new_tabCity"], (options => {
+    cb(options);
+  }));
+}
+
+function cb(options) {
+  const units = options.new_tabDegrees || "metric";
+  const city = options.new_tabCity || "Tartu";
+  fetchAndDisplayWeather(units, city);
+}
+
+function fetchAndDisplayWeather(units, city) {
+  const apiKey = OPENWEATHERMAP_API_KEY;
+
+  const uri = `https://api.openweathermap.org/data/2.5/weather?q=${city}&units=${units}&APPID=${apiKey}`;
   fetch(uri)
   .then(response => {
     return response.json();
   })
   .then(weatherJSON => {
-    var weatherCode = weatherJSON.weather[0].id;
-    var weatherIcon = weatherIconJSON[weatherCode].icon;
-    var weatherIconContainer = document.getElementById("weather-icon");
-    var hour = new Date().getHours();
-    var time = (hour > 6 && hour < 20) ? "day" : "night-alt";
-    weatherIconContainer.className = `wi wi-${time}-${weatherIcon}`;
+    const weatherCode = weatherJSON.weather[0].id;
+    const weatherIcon = weatherIconJSON[weatherCode].icon;
+    const weatherIconContainer = document.getElementById("weather-icon");
+    const hour = new Date().getHours();
+    const time = (hour > 6 && hour < 20) ? "day" : "night-alt";
+    let className = `wi wi-${time}-${weatherIcon}`;
+    if (className === "wi wi-night-alt-sunny") {
+      className = "wi wi-night-clear";
+    }
+    weatherIconContainer.className = className;
 
-    var degreesSymbol = `${String.fromCharCode(176)}C`;
-    var temp = `${weatherJSON.main.temp}${degreesSymbol}`;
-    var tempContainer = document.getElementById("temperature");
+    const degreesSymbol = `${String.fromCharCode(176)}C`;
+    const temp = `${weatherJSON.main.temp}${degreesSymbol}`;
+    const tempContainer = document.getElementById("temperature");
     tempContainer.textContent = temp;
   })
   .catch(error => {
@@ -26,7 +62,7 @@ function addWeather() {
 document.addEventListener("DOMContentLoaded", addWeather());
 
 // Thanks to https://gist.github.com/tbranyen/62d974681dea8ee0caa1#file-icons-json
-var weatherIconJSON = {
+const weatherIconJSON = {
   "200": {
     "label": "thunderstorm with light rain",
     "icon": "storm-showers"
